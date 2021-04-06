@@ -12,7 +12,7 @@ This starter provides a mode for developing your bot on your local machine as we
 
 # Setting up the bot
 ## Step 1: Preparing the code
-Let's start easy, fork/clone this repository. This repo provides all code to create a bot that only knows a `Hello Word` command. Good enough to start with! 
+Let's start easy, fork/clone this repository. This repo provides all code to create a bot that only knows a `Hello World` command. Good enough to start with! 
 
 In the root of this repository you see a `.env.example` file. Rename this file to `.env`. This is where your secret Telegram bot token will be stored on your local machine. For now leave the value as is, we will replace it with the real value later on. 
 
