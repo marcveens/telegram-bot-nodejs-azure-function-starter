@@ -15,12 +15,13 @@ const devMode = process.env.NODE_ENV === 'development';
 const { BOT_TOKEN, WEBHOOK_ADDRESS } = process.env;
 
 throwIfNo(BOT_TOKEN);
-throwIfNo(WEBHOOK_ADDRESS);
 
 let bot: Telegraf;
 
 // If in production mode, register the webhook address
 if (!devMode) {
+    throwIfNo(WEBHOOK_ADDRESS);
+    
     bot = new Telegraf(BOT_TOKEN, { telegram: { webhookReply: true } });
     bot.telegram.setWebhook(WEBHOOK_ADDRESS);
 
