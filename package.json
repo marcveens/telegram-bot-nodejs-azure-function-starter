@@ -1,5 +1,5 @@
 {
-  "name": "@telemarc/bot",
+  "name": "telegram-bot-nodejs-azure-function-starter",
   "version": "1.0.0",
   "description": "",
   "main": "build/index.js",
