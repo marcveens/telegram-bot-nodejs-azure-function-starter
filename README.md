@@ -8,7 +8,7 @@ The stack that's used by this starter:
 - [Azure Function App](https://docs.microsoft.com/en-us/azure/azure-functions/) - as a host for your bot
 - [Github Actions](https://github.com/features/actions) - building and deploying to Azure
 
-This started provides a mode for developing your bot on your local machine as well as a mode for running in production. The difference is that the production mode works using a Telegram webhook while the development mode uses the default Telegram long polling mechanism. This way there's no hassle using tunneling software like ngrok. 
+This starter provides a mode for developing your bot on your local machine as well as a mode for running in production. The difference is that the production mode works using a Telegram webhook while the development mode uses the default Telegram long polling mechanism. This way there's no hassle using tunneling software like ngrok. 
 
 # Setting up the bot
 ## Step 1: Preparing the code
