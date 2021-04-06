@@ -1,0 +1,30 @@
+{
+  "name": "telegram-bot-nodejs-azure-function-starter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "build/index.js",
+  "scripts": {
+    "start": "func start",
+    "build": "rimraf ./dist && tsc",
+    "watch": "rimraf ./dist && tsc -w --inlineSourceMap",
+    "--- Prod build ---": "---",
+    "deploy:function": "npm-run-all clean:build build --parallel build:ncc:bot build:ncc:warmup --sequential build:clean:packagejson build:copy:runtimefiles",
+    "build:ncc:bot": "ncc build dist/bot/index.js -m --no-source-map-register -o dist-deploy/dist/bot",
+    "build:ncc:warmup": "ncc build dist/warmup/index.js -m --no-source-map-register -o dist-deploy/dist/warmup",
+    "build:copy:runtimefiles": "copyfiles host.json proxies.json **/function.json -e dist-deploy/** dist-deploy",
+    "build:clean:packagejson": "rimraf ./dist-deploy/**/package.json",
+    "clean:build": "rimraf ./dist-deploy"
+  },
+  "dependencies": {
+    "@azure/functions": "^1.2.3",
+    "@types/node": "^14.14.35",
+    "@vercel/ncc": "^0.27.0",
+    "azure-function-log-intercept": "^1.0.7",
+    "copyfiles": "^2.4.1",
+    "dotenv": "^8.2.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "telegraf": "^4.3.0",
+    "typescript": "^4.2.3"
+  }
+}
