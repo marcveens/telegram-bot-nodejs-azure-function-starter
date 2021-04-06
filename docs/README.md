@@ -1,0 +1,1 @@
+This folder is only used for README images, you can safely remove it when creating your own bot using this repo. 

@@ -1,0 +1,11 @@
+{
+  "bindings": [
+    {
+      "name": "warmup",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 */10 * * * *"
+    }
+  ],
+  "scriptFile": "../dist/warmup/index.js"
+}
