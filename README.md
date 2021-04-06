@@ -40,7 +40,11 @@ When done registering the bot you'll get a token to access the HTTP API.
 
 <img src="/docs/botfather-done.jpg" alt="BotFather" align="center" width="600" />
 
-This access token is what should be placed as a value of the `BOT_TOKEN` key in your `.env` file in the root of this project. 
+This access token is what should be placed as a value of the `BOT_TOKEN` key in your `.env` file in the root of this project. Next to that, the `BOT_TOKEN` should also be registered as an Application setting in your Function App configuration.
+
+<img src="/docs/bot-token-configuration-azure.jpg" alt="Azure Application settings" align="center" width="600" />
+
+Don't forget to press __save__ after adding the setting!
 
 The bot is now almost ready!
 
@@ -50,6 +54,9 @@ Within the project I used a GitHub Action to build and deploy the code to the Az
 1. In `.github/workflows/main.yml` we need to set the `AZURE_FUNCTIONAPP_NAME` variable. This should be the name of your __Azure Function App__.
 2. On GitHub go to your repository Settings page, and navigate to the Secrets tab: 
     <img src="/docs/github-actions-secrets.jpg" alt="GitHub Secrets" align="center" />
-    Over here test
+    Create a secret with `AZURE_FUNCTIONAPP_PUBLISH_PROFILE` as the name, and the content of the __publish-profile__ file we downloaded earlier. Just copy/paste the entire content into the Value field. This publish profile will make sure the GitHub Action deploys the code to the correct Azure Function App.
+
+
+
 
 
