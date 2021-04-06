@@ -13,4 +13,4 @@ This started provides a mode for developing your bot on your local machine as we
 # Setting up Azure Function App
 ## Step 1: Create an Azure Function App
 First step is creating a Node.js Azure Function App. 
-<img src="/docs/create-function-app.jpg" alt="Create Azure Function App" />
+<img src="/docs/create-function-app.jpg" alt="Create Azure Function App" align="right" width="200" />
