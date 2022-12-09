@@ -10,7 +10,7 @@ import { throwIfNo } from './utils/throwIf';
 import { setBotCommands } from './commands/botCommands';
 
 require('dotenv').config();
-
+//-------------------------
 const devMode = process.env.NODE_ENV === 'development';
 const { BOT_TOKEN, WEBHOOK_ADDRESS } = process.env;
 
