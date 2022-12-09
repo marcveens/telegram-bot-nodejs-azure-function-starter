@@ -20,55 +20,60 @@ let bot: Telegraf;
 
 // If in production mode, register the webhook address
 if (!devMode) {
-    throwIfNo(WEBHOOK_ADDRESS);
-    
-    bot = new Telegraf(BOT_TOKEN, { telegram: { webhookReply: true } });
-    bot.telegram.setWebhook(WEBHOOK_ADDRESS);
+  throwIfNo(WEBHOOK_ADDRESS);
 
-    setBotCommands(bot);
+  bot = new Telegraf(BOT_TOKEN, { telegram: { webhookReply: true } });
+  bot.telegram.setWebhook(WEBHOOK_ADDRESS);
 
-    bot.catch((err, ctx) => { console.log(`Error for ${ctx.updateType}`, err); });
+  setBotCommands(bot);
+
+  bot.catch((err, ctx) => {
+    console.log(`Error for ${ctx.updateType}`, err);
+  });
 }
 
-const httpTrigger: AzureFunction = async function (context: Context, req: HttpRequest): Promise<void> {
-    intercept(context);
+const httpTrigger: AzureFunction = async function (
+  context: Context,
+  req: HttpRequest,
+): Promise<void> {
+  intercept(context);
 
-    try {
-        const rawBody = req.rawBody;
+  try {
+    const rawBody = req.rawBody;
 
-        // If in production mode, use bot.handleUpdate to handle incoming updates from Telegram
-        if (!devMode) {
-            if (rawBody) {
-                const update = JSON.parse(rawBody);
+    // If in production mode, use bot.handleUpdate to handle incoming updates from Telegram
+    if (!devMode) {
+      if (rawBody) {
+        const update = JSON.parse(rawBody);
 
-                bot.handleUpdate(update);
-            }
-        // If in development mode, use the default bot.launch() to activate the pulling mechanism
-        } else {
-            const bot = new Telegraf(BOT_TOKEN);
+        bot.handleUpdate(update);
+      }
+      // If in development mode, use the default bot.launch() to activate the pulling mechanism
+    } else {
+      const bot = new Telegraf(BOT_TOKEN);
 
-            setBotCommands(bot);
+      setBotCommands(bot);
 
-            bot.launch();
-        }
-
-        // Only return a simple string to know if your bot is alive
-        context.res = {
-            body: JSON.stringify({
-                status: 'Ready to go'
-            })
-        };
-    } catch (error) {
-        console.error('Error parsing body', error);
-
-        context.res = {
-            status: 500,
-            body: { error },
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        };
+      bot.launch();
     }
+
+    // Only return a simple string to know if your bot is alive
+    context.res = {
+      body: JSON.stringify({
+        status: 'Ready to go',
+      }),
+    };
+  } catch (error) {
+    console.error('Error parsing body', error);
+
+    context.res = {
+      status: 500,
+      body: { error },
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+  }
 };
 
 export default httpTrigger;
